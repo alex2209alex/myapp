@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="navbar-brand">Buy a house</div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav col-lg-5">
+        <li class="nav-item">
+          <button class="nav-link" (click)="navigateToUrl('')">Home</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" (click)="navigateToUrl('/me/houses')">My houses</button>
+        </li>
+      </ul>
+      <ul class="navbar-nav col-lg-3 offset-lg-4">
+        <li class="nav-item">
+          <button class="nav-link" (click)="navigateToUrl('login')">Login</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" (click)="navigateToUrl('register')">Register</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" (click)="navigateToUrl('logout')">Log out</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

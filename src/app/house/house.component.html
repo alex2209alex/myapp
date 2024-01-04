@@ -1,0 +1,13 @@
+<div class="card flex-row">
+    <img class="card-img-left example-card-img-responsive" src="{{house!.urlImg}}" alt="imagine casa" />
+    <div class="card-body">
+        <h4 class="card-title">{{house!.title}}</h4>
+        <p class="card-text price">{{house!.price}} euro</p>
+        <p class="card-text">{{house!.description}}</p>
+    </div>
+    <div class="card-footer flex col-3">
+        <p class="card-text">Email:</p>
+        <p>{{isNumberShown ? house!.email : 'xxxxxxxxxxxxxxxxxxxxx'}}</p>
+        <button *ngIf="!isNumberShown" class="btn btn-secondary" (click)="showPhoneNumber()">Show</button>
+    </div>
+</div>
