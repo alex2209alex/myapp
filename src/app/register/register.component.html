@@ -1,0 +1,50 @@
+<div *ngIf="!isLoading">
+    <h4 class="col-12 text-center">Register</h4>
+    <form [formGroup]="myForm">
+        <div class="row mb-2">
+            <div class="col-12 col-md-4 offset-md-4">
+                <label for="email" class="form-label">Email address <i style="color: red;">*</i></label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <small class="text-danger" *ngIf="myForm.get('email')?.hasError('required') && myForm.get('email')?.touched">
+                    Email is required
+                </small>
+                <small class="text-danger" *ngIf="myForm.get('email')?.hasError('email')">
+                    Email should be valid
+                </small>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-12 col-md-4 offset-md-4">
+                <label for="password" class="form-label">Password <i style="color: red;">*</i></label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+                <small class="text-danger" *ngIf="myForm.get('password')?.hasError('required') && myForm.get('password')?.touched">
+                    Password is required
+                </small>
+                <small class="text-danger" *ngIf="myForm.get('password')?.hasError('minlength') && myForm.get('password')?.touched">
+                    Password should have at least 6 characters
+                </small>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-12 col-md-4 offset-md-4">
+                <label for="passwordConfirmation" class="form-label">Confirm password <i style="color: red;">*</i></label>
+                <input type="password" class="form-control" id="passwordConfirmation" formControlName="passwordConfirmation">
+                <small class="text-danger col-12" *ngIf="myForm.get('passwordConfirmation')?.hasError('required') && myForm.get('passwordConfirmation')?.touched">
+                    Confirmation password is required
+                </small>
+                <small class="text-danger col-12" *ngIf="myForm.controls['passwordConfirmation'].value !== myForm.controls['password'].value && myForm.get('passwordConfirmation')?.touched">
+                    Passwords don't match
+                </small>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-12 col-md-4 offset-md-4 text-center">
+                <button type="button" class="btn btn-secondary me-2" (click)="navigateToLogin()">Login</button>
+                <button class="btn btn-primary" [disabled]="myForm.invalid || myForm.controls['passwordConfirmation'].value !== myForm.controls['password'].value" (click)="onSubmit()">Register</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div *ngIf="isLoading" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+</div>
