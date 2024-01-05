@@ -12,6 +12,8 @@ import { HouseComponent } from './house/house.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { LogoutComponent } from './logout/logout.component';
+import { AddHouseComponent } from './add-house/add-house.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    LogoutComponent,
+    AddHouseComponent
   ],
   imports: [
     BrowserModule,

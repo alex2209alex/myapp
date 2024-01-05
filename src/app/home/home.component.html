@@ -2,14 +2,21 @@
     <div *ngIf="!isRouteHome" class="row my-2">
       <h2 class="col-6">My houses</h2>
       <div class="col-2 offset-md-4">
-        <button class="btn btn-primary">Add a house</button>
+        <button (click)="addHouse()" class="btn btn-primary">Add a house</button>
       </div>
     </div>
     <div *ngIf="isRouteHome" class="row my-2">
       <h2 class="col-12">Home</h2>
     </div>
-    <div *ngFor="let house of loadedHouses">
-      <app-house [house]="house"></app-house>
+    <div *ngIf="isRouteHome">
+      <div *ngFor="let house of loadedHouses">
+        <app-house [house]="house"></app-house>
+      </div>
+    </div>
+    <div *ngIf="!isRouteHome">
+      <div *ngFor="let house of filteredLoadedHouses">
+        <app-house [house]="house"></app-house>
+      </div>
     </div>
   </div>
   

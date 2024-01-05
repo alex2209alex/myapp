@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { House } from '../models/house.model';
-import { ActivatedRoute } from '@angular/router';
-import { HousesService } from '../services/houses/houses.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
+import { House } from '../models/house.model';
+import { HousesService } from '../services/houses/houses.service';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +11,10 @@ import { map } from 'rxjs';
 })
 export class HomeComponent {
   loadedHouses: House[] = [];
+  filteredLoadedHouses: House[] = [];
   isRouteHome: boolean = true;
 
-  constructor(private housesService: HousesService, private route: ActivatedRoute) {}
+  constructor(private housesService: HousesService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     if (this.route.toString() === 'Route(url:\'me/houses\', path:\'me/houses\')') {
@@ -22,10 +23,8 @@ export class HomeComponent {
     this.getHouses();
   }
 
-  addHouse(house: House): void {
-    this.housesService.addHouse(house).subscribe(responseData => {
-      console.log(responseData);
-    });
+  addHouse(): void {
+    this.router.navigate(['/houses', 'add']);
   }
 
   getHouses(): void {
@@ -36,13 +35,16 @@ export class HomeComponent {
         for (const key in responseData) {
           if (responseData.hasOwnProperty(key)) {
             // @ts-ignore
-            housesArray.push({...responseData[key], id: key});
+            housesArray.push({ ...responseData[key], id: key });
           }
         }
         return housesArray;
       }))
       .subscribe(responseData => {
         this.loadedHouses = responseData;
+        if (!this.isRouteHome) {
+          this.filteredLoadedHouses = this.loadedHouses.filter(house => house.email === JSON.parse(localStorage.getItem('user')!).email);
+        }
       });
   }
 }

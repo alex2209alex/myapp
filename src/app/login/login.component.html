@@ -1,30 +1,37 @@
-<h4 class="col-12 text-center">Login</h4>
-<form [formGroup]="myForm">
-    <div class="row mb-2">
-        <div class="col-12 col-md-4 offset-md-4">
-            <label for="email" class="form-label">Email address <i style="color: red;">*</i></label>
-            <input type="email" class="form-control" id="email" formControlName="email">
-            <small class="text-danger" *ngIf="myForm.get('email')?.hasError('required') && myForm.get('email')?.touched">
-                Email is required
-            </small>
-            <small class="text-danger" *ngIf="myForm.get('email')?.hasError('email')">
-                Email should be valid
-            </small>
+<div *ngIf="!isLoading">
+    <h4 class="col-12 text-center">Login</h4>
+    <form [formGroup]="myForm">
+        <div class="row mb-2">
+            <div class="col-12 col-md-4 offset-md-4">
+                <label for="email" class="form-label">Email address <i style="color: red;">*</i></label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <small class="text-danger"
+                    *ngIf="myForm.get('email')?.hasError('required') && myForm.get('email')?.touched">
+                    Email is required
+                </small>
+                <small class="text-danger" *ngIf="myForm.get('email')?.hasError('email')">
+                    Email should be valid
+                </small>
+            </div>
         </div>
-    </div>
-    <div class="row mb-2">
-        <div class="col-12 col-md-4 offset-md-4">
-            <label for="password" class="form-label">Password <i style="color: red;">*</i></label>
-            <input type="password" class="form-control" id="password" formControlName="password">
-            <small class="text-danger" *ngIf="myForm.get('password')?.hasError('required') && myForm.get('password')?.touched">
-                Password is required
-            </small>
+        <div class="row mb-2">
+            <div class="col-12 col-md-4 offset-md-4">
+                <label for="password" class="form-label">Password <i style="color: red;">*</i></label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+                <small class="text-danger"
+                    *ngIf="myForm.get('password')?.hasError('required') && myForm.get('password')?.touched">
+                    Password is required
+                </small>
+            </div>
         </div>
-    </div>
-    <div class="row mb-2">
-        <div class="col-12 col-md-4 offset-md-4 text-center">
-            <button type="button" class="btn btn-secondary me-2" (click)="navigateToRegister()">Register</button>
-            <button class="btn btn-primary" [disabled]="myForm.invalid" (click)="onSubmit()">Login</button>
+        <div class="row mb-2">
+            <div class="col-12 col-md-4 offset-md-4 text-center">
+                <button type="button" class="btn btn-secondary me-2" (click)="navigateToRegister()">Register</button>
+                <button class="btn btn-primary" [disabled]="myForm.invalid" (click)="onSubmit()">Login</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
+<div *ngIf="isLoading" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+</div>
