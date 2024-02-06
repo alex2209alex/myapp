@@ -36,13 +36,13 @@ export class RegisterComponent {
     this.isLoading = true;
 
     this.authService.register(email, password).subscribe(resData => {
-      console.log(resData);
       this.isLoading = false;
+      this.router.navigate(['']);
     }, err => {
       alert(err.error.error.message);
       this.isLoading = false;
     });
-    
+
     this.myForm.reset();
   }
 }
