@@ -13,6 +13,7 @@ export class HomeComponent {
   loadedHouses: House[] = [];
   filteredLoadedHouses: House[] = [];
   isRouteHome: boolean = true;
+  isLoading = true;
 
   constructor(private housesService: HousesService, private route: ActivatedRoute, private router: Router) { }
 
@@ -45,6 +46,7 @@ export class HomeComponent {
         if (!this.isRouteHome) {
           this.filteredLoadedHouses = this.loadedHouses.filter(house => house.email === JSON.parse(localStorage.getItem('user')!).email);
         }
+        this.isLoading = false;
       });
   }
 }
